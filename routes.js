@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = Router();
 
 router.get('/', (req, res) => {
-  res.send('Test erkm server');
+  res.send('Test erkm server. Beware of ligma.');
 });
 
 router.get('/data', (req, res) => {

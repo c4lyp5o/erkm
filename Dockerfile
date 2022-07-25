@@ -13,7 +13,7 @@ RUN npm install
 # copy the generated modules and all other files to the container
 COPY . .
 
-# our app is running on port 6001 within the container, so need to expose it
+# our app is running on port  within the container, so need to expose it
 EXPOSE 6001
 
 # the command that starts our app
