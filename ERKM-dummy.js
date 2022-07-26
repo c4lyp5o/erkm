@@ -1,5 +1,7 @@
 const ERKM = {
   data: {
+    jumlahSekolahRendah: 3,
+    jumlahSekolahMenengah: 3,
     sekolahRendah: [
       {
         id: 1,
@@ -10,10 +12,12 @@ const ERKM = {
         enrolmen: '10',
         kelas: [
           {
+            id: 1,
             nama: '1 adil',
             jumlahPelajar: '5',
             pelajar: [
               {
+                id: 1,
                 nama: 'abu bakar as-siddiq',
                 jantina: 'lelaki',
                 umur: '7',
@@ -22,6 +26,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 2,
                 nama: 'umar ibn khattab',
                 jantina: 'lelaki',
                 umur: '7',
@@ -30,6 +35,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 3,
                 nama: 'usman ibn affan',
                 jantina: 'lelaki',
                 umur: '7',
@@ -38,6 +44,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 4,
                 nama: 'ali ibn abi talib',
                 jantina: 'lelaki',
                 umur: '7',
@@ -46,6 +53,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 5,
                 nama: 'thalhah ibn ubaidillah',
                 jantina: 'lelaki',
                 umur: '7',
@@ -56,10 +64,12 @@ const ERKM = {
             ],
           },
           {
+            id: 2,
             nama: '1 amanah',
             jumlahPelajar: '5',
             pelajar: [
               {
+                id: 1,
                 nama: 'abu darda',
                 jantina: 'lelaki',
                 umur: '7',
@@ -68,6 +78,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 2,
                 nama: 'waraqah ibn naufal',
                 jantina: 'lelaki',
                 umur: '7',
@@ -76,7 +87,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'usman ibn affan',
+                id: 3,
+                nama: 'bara bin azib',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -84,7 +96,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'ali ibn abi talib',
+                id: 4,
+                nama: 'abdullah ibn rawahah',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -92,7 +105,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'thalhah ibn ubaidillah',
+                id: 5,
+                nama: 'usaid ibn hudayr',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -109,13 +123,15 @@ const ERKM = {
         negeri: 'johor',
         daerah: 'batu pahat',
         kodSekolah: 'YEE7873',
-        enrolmen: '10',
+        enrolmen: '5',
         kelas: [
           {
+            id: 1,
             nama: '1A',
             jumlahPelajar: '5',
             pelajar: [
               {
+                id: 1,
                 nama: 'zubayr ibn awwam',
                 jantina: 'lelaki',
                 umur: '7',
@@ -124,6 +140,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 2,
                 nama: 'said ibn zayd',
                 jantina: 'lelaki',
                 umur: '7',
@@ -132,6 +149,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 3,
                 nama: 'saad ibn abi waqqas',
                 jantina: 'lelaki',
                 umur: '7',
@@ -140,6 +158,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 4,
                 nama: 'abdul rahman ibn auf',
                 jantina: 'lelaki',
                 umur: '7',
@@ -148,6 +167,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 5,
                 nama: 'abu ubaidah ibn amir al jarrah',
                 jantina: 'lelaki',
                 umur: '7',
@@ -165,13 +185,15 @@ const ERKM = {
         negeri: 'selangor',
         daerah: 'hulu selangor',
         kodSekolah: 'YEE7874',
-        enrolmen: '10',
+        enrolmen: '5',
         kelas: [
           {
-            nama: '1A',
+            id: 1,
+            nama: '1 bittikhun',
             jumlahPelajar: '5',
             pelajar: [
               {
+                id: 1,
                 nama: 'zubayr ibn awwam',
                 jantina: 'lelaki',
                 umur: '7',
@@ -180,6 +202,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 2,
                 nama: 'said ibn zayd',
                 jantina: 'lelaki',
                 umur: '7',
@@ -188,6 +211,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 3,
                 nama: 'saad ibn abi waqqas',
                 jantina: 'lelaki',
                 umur: '7',
@@ -196,6 +220,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 4,
                 nama: 'abdul rahman ibn auf',
                 jantina: 'lelaki',
                 umur: '7',
@@ -204,6 +229,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 5,
                 nama: 'abu ubaidah ibn amir al jarrah',
                 jantina: 'lelaki',
                 umur: '7',
@@ -223,13 +249,15 @@ const ERKM = {
         negeri: 'kedah',
         daerah: 'kota setar',
         kodSekolah: 'YEE7875',
-        pelajar: '10',
+        pelajar: '5',
         kelas: [
           {
+            id: 1,
             nama: '1 amanah',
             jumlahPelajar: '5',
             pelajar: [
               {
+                id: 1,
                 nama: 'abdullah ibn abbas',
                 jantina: 'lelaki',
                 umur: '7',
@@ -238,6 +266,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 2,
                 nama: 'abdullah ibn umar',
                 jantina: 'lelaki',
                 umur: '7',
@@ -246,6 +275,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 3,
                 nama: 'abdullah ibn zubayr',
                 jantina: 'lelaki',
                 umur: '7',
@@ -254,6 +284,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 4,
                 nama: 'jafar ibn abi talib',
                 jantina: 'lelaki',
                 umur: '7',
@@ -262,6 +293,7 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
+                id: 5,
                 nama: 'zaid ibn harisah',
                 jantina: 'lelaki',
                 umur: '7',
@@ -279,14 +311,16 @@ const ERKM = {
         negeri: 'johor',
         daerah: 'batu pahat',
         kodSekolah: 'YEE7876',
-        pelajar: '10',
+        pelajar: '5',
         kelas: [
           {
-            nama: '1 amanah',
+            id: 1,
+            nama: '1B',
             jumlahpelajar: '5',
             pelajar: [
               {
-                nama: 'abdullah ibn abbas',
+                id: 1,
+                nama: 'abdurrahman ibn sakhr',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -294,7 +328,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'abdullah ibn umar',
+                id: 2,
+                nama: 'uthman ibn amir',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -302,7 +337,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'abdullah ibn zubayr',
+                id: 3,
+                nama: 'abu sufyan ibn harb',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -310,7 +346,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'jafar ibn abi talib',
+                id: 4,
+                nama: 'muawiyah ibn abi sufyan',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -318,7 +355,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'zaid ibn harisah',
+                id: 5,
+                nama: 'yazid ibn abi sufyan',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -335,14 +373,16 @@ const ERKM = {
         negeri: 'selangor',
         daerah: 'hulu selangor',
         kodSekolah: 'YEE7877',
-        pelajar: '10',
+        pelajar: '5',
         kelas: [
           {
-            nama: '1 amanah',
+            id: 1,
+            nama: '1 burtuqolun',
             jumlahpelajar: '5',
             pelajar: [
               {
-                nama: 'abdullah ibn abbas',
+                id: 1,
+                nama: 'amir ibn fuhairah',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -350,7 +390,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'abdullah ibn umar',
+                id: 2,
+                nama: 'bilal ibn rabah',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -358,7 +399,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'abdullah ibn zubayr',
+                id: 3,
+                nama: 'ammar ibn yasir',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -366,7 +408,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'jafar ibn abi talib',
+                id: 4,
+                nama: 'huzaifah ibn yaman',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
@@ -374,7 +417,8 @@ const ERKM = {
                 jenisEtnik: 'melayu',
               },
               {
-                nama: 'zaid ibn harisah',
+                id: 5,
+                nama: 'suhaib al-rumi',
                 jantina: 'lelaki',
                 umur: '7',
                 ic: '150101056235',
