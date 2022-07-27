@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 6001
 
 # the command that starts our app
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]

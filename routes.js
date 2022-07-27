@@ -1,11 +1,10 @@
 require('dotenv').config();
 const { data } = require('./ERKM-dummy');
+const { gigaChad } = require('./gigachad');
 const { Router } = require('express');
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.send('Test erkm server. Beware of ligma.');
-});
+router.get('/', gigaChad);
 
 router.get('/data', (req, res) => {
   console.log(data);

@@ -26,15 +26,6 @@ const ERKM = {
                 kumpulanEtnik: 'melayu',
               },
               {
-                id: 2,
-                nama: 'umar ibn khattab',
-                jantina: 'lelaki',
-
-                ic: '150101056235',
-                tarikhLahir: '2015-01-01',
-                kumpulanEtnik: 'melayu',
-              },
-              {
                 id: 3,
                 nama: 'usman ibn affan',
                 jantina: 'lelaki',
@@ -169,6 +160,15 @@ const ERKM = {
               {
                 id: 5,
                 nama: 'abu ubaidah ibn amir al jarrah',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 6,
+                nama: 'ni budak pindah',
                 jantina: 'lelaki',
 
                 ic: '150101056235',
