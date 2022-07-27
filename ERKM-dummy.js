@@ -407,6 +407,58 @@ const ERKM = {
               },
             ],
           },
+          {
+            id: 2,
+            nama: '5 berani',
+            jumlahPelajar: '5',
+            pelajar: [
+              {
+                id: 1,
+                nama: 'abdullah ibn abbas',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 2,
+                nama: 'abdullah ibn umar',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 3,
+                nama: 'abdullah ibn zubayr',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 4,
+                nama: 'jafar ibn abi talib',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 5,
+                nama: 'zaid ibn harisah',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+            ],
+          },
         ],
       },
       {
@@ -415,11 +467,63 @@ const ERKM = {
         negeri: 'johor',
         daerah: 'batu pahat',
         kodSekolah: 'YEE7876',
-        pelajar: '5',
+        pelajar: '10',
         kelas: [
           {
             id: 1,
-            nama: '1B',
+            nama: '1A',
+            jumlahpelajar: '5',
+            pelajar: [
+              {
+                id: 1,
+                nama: 'abdurrahman ibn sakhr',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 2,
+                nama: 'uthman ibn amir',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 3,
+                nama: 'abu sufyan ibn harb',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 4,
+                nama: 'muawiyah ibn abi sufyan',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+              {
+                id: 5,
+                nama: 'yazid ibn abi sufyan',
+                jantina: 'lelaki',
+
+                ic: '150101056235',
+                tarikhLahir: '2015-01-01',
+                kumpulanEtnik: 'melayu',
+              },
+            ],
+          },
+          {
+            id: 2,
+            nama: '5A',
             jumlahpelajar: '5',
             pelajar: [
               {

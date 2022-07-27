@@ -7,7 +7,6 @@ const router = Router();
 router.get('/', gigaChad);
 
 router.get('/data', (req, res) => {
-  console.log(data);
   res.send(data);
 });
 
