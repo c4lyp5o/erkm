@@ -1,14 +1,19 @@
 require('dotenv').config();
 const { data } = require('./ERKM-dummy');
-const { gigaChad } = require('./gigachad');
 const { Router } = require('express');
+const controller = require('./controllers/index');
 const router = Router();
 
-router.get('/', gigaChad);
+router.get('/', controller.gigaChad);
 
-router.get('/data', (req, res) => {
-  res.send(data);
-});
+router.get('/semuasekolah', controller.getAllSchoolNames);
+
+// router.get('/data', controller.databaru);
+router.get('/data/:kodSekolah', controller.sortByKodSekolah);
+// router.get('/data', controller.sortByKodSekolahAndKodKelas);
+router.get('/count', controller.testings);
+router.get('/listpelajar', controller.listPelajarByKodSekolah);
+router.get('/listpelajar/:kodSekolah', controller.showKelasByTahun);
 
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
