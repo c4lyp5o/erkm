@@ -89,6 +89,7 @@ exports.getAllSchoolNames = (req, res) => {
 };
 
 exports.getAllData = (req, res) => {
+  let data = [];
   const schools = [...new Set(dataPerlis.map((item) => item.NAMASEKOLAH))];
   for (s in schools) {
     const school = schools[s];
