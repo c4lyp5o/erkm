@@ -133,7 +133,7 @@ exports.getAllData = (req, res) => {
       kodSekolah: schoolData[0].KODSEKOLAH,
       semuaTahun: schoolYears,
     };
-    data.push(...schoolObject);
+    data.push(schoolObject);
   }
   res.status(200).json(data);
 };
