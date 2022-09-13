@@ -1,9 +1,42 @@
 const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
-// const { forEach } = require('lodash');
 
 exports.gigaChad = gigaChad;
+
+function getStudentsInSchool(schoolName) {
+  const students = _.reduce(
+    dataPerlis,
+    (result, value) => {
+      if (value.NAMASEKOLAH === 'SEKOLAH KEBANGSAAN TITI TINGGI') {
+        const pelajar = {
+          nama: value.NAMA,
+          jantina: value.KODJANTINA,
+          umur: value.UMUR,
+          noKp: value.NOKP,
+          tarikhLahir: value.TKHLAHIR,
+          kaum: value.KAUM,
+          kelas: `${value.THNTING} ${value.NAMAKELAS}`,
+        };
+        result.murid.push(pelajar);
+      }
+      return result;
+    },
+    { murid: [] }
+  );
+  return students;
+}
+
+function getClassesInSchool(students) {
+  const classes = students.reduce((result, value) => {
+    if (!result.includes(value.kelas)) {
+      result.push(value.kelas);
+    }
+    return result;
+  }, []);
+  console.log(classes);
+  return classes;
+}
 
 exports.databaru = (req, res) => {
   res.status(200).json({ dataPerlis });
@@ -15,7 +48,6 @@ exports.getAllSchoolNames = (req, res) => {
   // init keys
   const key1 = 'NAMASEKOLAH';
   const key2 = 'KODSEKOLAH';
-  const key3 = 'NAMAKELAS';
   // 1st pass
   const sekolahdata = [
     ...new Map(
@@ -24,68 +56,10 @@ exports.getAllSchoolNames = (req, res) => {
         {
           namaSekolah: item[key1],
           kodSekolah: item[key2],
-          jumlahKelas: item[key3],
         },
       ])
     ).values(),
   ];
-  // 2nd pass
-  // const arrayUniqueByKey = [
-  //   ...new Map(dataPerlis.map((item) => [item[key1], item])).values(),
-  // ];
-  // console.log(arrayUniqueByKey);
-  // 3rd pass
-  // const testing = _.uniqBy(dataPerlis, 'NAMASEKOLAH');
-  // const testing2 = _.uniqBy(dataPerlis, 'KODSEKOLAH');
-  // const testing3 = _.uniqBy(dataPerlis, 'THNTING');
-  // let testing4 = [];
-  // const moretest = _.forEach(dataPerlis, (item) => {
-  //   forEach(sekolahdata, (item2) => {
-  //     if (item.NAMASEKOLAH === item2.namaSekolah) {
-  //       const heee = {
-  //         pelajar: {
-  //           nama: item.NAMA,
-  //         },
-  //       };
-  //       // data.push({
-  //       //   namaSekolah: item.NAMASEKOLAH,
-  //       //   kodSekolah: item.KODSEKOLAH,
-  //       //   tahunTing: item.THNTING,
-  //       // });
-  //     }
-  //   });
-  // });
-  // let testing5 = [];
-  // let testing6 = {};
-  // _.forEach(dataPerlis, (item) => {
-  //   _.forEach(sekolahdata, (item2) => {
-  //     testing6 = { ...testing6, [item2.namaSekolah]: [] };
-  //     //   namaSekolah: item.NAMASEKOLAH,
-  //     //   kodSekolah: item.KODSEKOLAH,
-  //     //   tahunTing: item.THNTING,
-  //     //   pelajar: {
-  //     //     nama: item.NAMA,
-  //     //   },
-  //     // };
-  //     // testing5 = [...testing5, { namaSekolah: item2.NAMASEKOLAH, pelajar: { nama: item.NAMA } }];
-  //     if (item.NAMASEKOLAH === item2.namaSekolah) {
-  //       testing6 = {
-  //         ...testing6,
-  //         [item2.namaSekolah]: [...testing6[{ ...item.NAMA }]],
-  //       };
-  //       // testing5 = [...testing5, item.NAMA];
-  //     }
-  //   });
-  // });
-  // console.log(testing6);
-  // const { NAMASEKOLAH, KODSEKOLAH, THNTING } = item;
-  // data.push({
-  //   namaSekolah: NAMASEKOLAH,
-  //   kodSekolah: KODSEKOLAH,
-  //   tahunTing: THNTING,
-  // });
-  // console.log(moretest);
-  // 4th pass
   const sekolahRendah = _.filter(sekolahdata, (o) => {
     return o.kodSekolah.match(/^RC|^RB/);
   });
@@ -111,7 +85,56 @@ exports.getAllSchoolNames = (req, res) => {
       sekolahMenengah: sekolahMenengah,
     },
   ];
-  res.status(200).json({ data });
+  res.status(200).json(data);
+};
+
+exports.getAllData = (req, res) => {
+  const schools = [...new Set(dataPerlis.map((item) => item.NAMASEKOLAH))];
+  for (s in schools) {
+    const school = schools[s];
+    const schoolData = dataPerlis.filter((item) => item.NAMASEKOLAH === school);
+    const years = [...new Set(schoolData.map((item) => item.THNTING))];
+    const schoolYears = [];
+    for (y in years) {
+      const year = years[y];
+      const yearData = schoolData.filter((item) => item.THNTING === year);
+      const classes = [...new Set(yearData.map((item) => item.NAMAKELAS))];
+      const schoolClasses = [];
+      for (c in classes) {
+        const classData = yearData.filter(
+          (item) => item.NAMAKELAS === classes[c]
+        );
+        const schoolClass = {
+          namaKelas: classes[c],
+          jumlahPelajar: classData.length,
+        };
+        for (d in classData) {
+          const student = classData[d];
+          schoolClass['pelajar' + d] = {
+            nama: student.NAMA,
+            umur: student.UMUR,
+            jantina: student.KODJANTINA,
+            noKp: student.NOKP,
+            tarikhLahir: student.TKHLAHIR,
+            kaum: student.KAUM,
+          };
+        }
+        schoolClasses.push(schoolClass);
+      }
+      const schoolYear = {
+        tahun: year,
+        kelas: schoolClasses,
+      };
+      schoolYears.push(schoolYear);
+    }
+    const schoolObject = {
+      namaSekolah: school,
+      kodSekolah: schoolData[0].KODSEKOLAH,
+      semuaTahun: schoolYears,
+    };
+    data.push(...schoolObject);
+  }
+  res.status(200).json(data);
 };
 
 exports.listPelajarByKodSekolah = (req, res) => {
@@ -152,41 +175,40 @@ exports.listPelajarByKodSekolah = (req, res) => {
   res.status(200).json({ semuaKelasX });
 };
 
-exports.testings = (req, res) => {
-  var ListDistinct = [];
-  dataPerlis.forEach((m) => {
-    if (ListDistinct.indexOf(m.NAMASEKOLAH) < 0)
-      ListDistinct.push(m.NAMASEKOLAH, { kod: m.KODSEKOLAH });
-  });
-  console.log(ListDistinct);
-  res.status(200).json({ ListDistinct });
-};
-
 exports.sortByKodSekolah = (req, res) => {
-  console.log(req.params);
   const { kodSekolah } = req.params;
-  let data = [];
-  for (let i = 0; i < dataPerlis.length; i++) {
-    if (dataPerlis[i].KODSEKOLAH === kodSekolah) {
-      data = [...data, dataPerlis[i]];
-    }
-  }
-  res.status(200).json({ data });
+  const data = _.filter(dataPerlis, (o) => {
+    return o.KODSEKOLAH === kodSekolah;
+  });
+  data.sort((a, b) => {
+    return a.THNTING - b.THNTING;
+  });
+  res.status(200).json(data);
 };
 
-exports.sortByKodSekolahAndKodKelas = (req, res) => {
-  console.log(req.query);
-  const { kodSekolah, kodKelas } = req.query;
-  let data = [];
-  for (let i = 0; i < dataPerlis.length; i++) {
-    if (
-      dataPerlis[i].KODSEKOLAH === kodSekolah &&
-      dataPerlis[i].THNTING === kodKelas
-    ) {
-      data = [...data, dataPerlis[i]];
-    }
-  }
-  res.status(200).json({ data });
+exports.sortByKodSekolahAndTahun = (req, res) => {
+  const { kodSekolah, tahun } = req.params;
+  const dataSekolah = dataPerlis.filter(
+    (item) => item.KODSEKOLAH === kodSekolah
+  );
+  const data = dataSekolah.filter((item) => item.THNTING === tahun);
+  data.sort((a, b) => {
+    return a.NAMA > b.NAMA ? 1 : -1;
+  });
+  res.status(200).json(data);
+};
+
+exports.sortByKodSekolahAndTahunAndKelas = (req, res) => {
+  const { kodSekolah, tahun, kelas } = req.params;
+  const dataSekolah = dataPerlis.filter(
+    (item) => item.KODSEKOLAH === kodSekolah
+  );
+  const dataSekolahTahun = dataSekolah.filter((item) => item.THNTING === tahun);
+  const data = dataSekolahTahun.filter((item) => item.NAMAKELAS === kelas);
+  data.sort((a, b) => {
+    return a.NAMA > b.NAMA ? 1 : -1;
+  });
+  res.status(200).json(data);
 };
 
 exports.showKelasByTahun = (req, res) => {
@@ -217,12 +239,4 @@ exports.showKelasByTahun = (req, res) => {
     });
   });
   res.status(200).json({ pelajarByKelas });
-};
-
-exports.showPelajarByKodKelas = (req, res) => {
-  const { kodKelas } = req.params;
-  const pelajar = _.filter(dataPerlis, (o) => {
-    return o.THNTING === kodKelas;
-  });
-  res.status(200).json({ pelajar });
 };

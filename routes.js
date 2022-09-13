@@ -6,14 +6,20 @@ const router = Router();
 
 router.get('/', controller.gigaChad);
 
-router.get('/semuasekolah', controller.getAllSchoolNames);
+// raw untouched data
+router.get('/raw', controller.databaru);
 
-// router.get('/data', controller.databaru);
+// sorted data
+router.get('/alldatasorted', controller.getAllData);
+
+// specific data
+router.get('/listsekolah', controller.getAllSchoolNames);
 router.get('/data/:kodSekolah', controller.sortByKodSekolah);
-// router.get('/data', controller.sortByKodSekolahAndKodKelas);
-router.get('/count', controller.testings);
-router.get('/listpelajar', controller.listPelajarByKodSekolah);
-router.get('/listpelajar/:kodSekolah', controller.showKelasByTahun);
+router.get('/data/:kodSekolah/:tahun', controller.sortByKodSekolahAndTahun);
+router.get(
+  '/data/:kodSekolah/:tahun/:kelas',
+  controller.sortByKodSekolahAndTahunAndKelas
+);
 
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
