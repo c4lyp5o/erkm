@@ -151,8 +151,8 @@ exports.getAllData = (req, res) => {
     {
       DAERAH: daerah,
       PPD: ppd,
+      SEKOLAH: [...data],
     },
-    ...data,
   ];
   res.status(200).json(data);
 };
