@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
+const dataPraPerlis = require('../db/prasekolah.json');
 
 exports.gigaChad = gigaChad;
 
@@ -90,6 +91,9 @@ exports.getAllSchoolNames = (req, res) => {
 
 exports.getAllData = (req, res) => {
   let data = [];
+  let daerah = '';
+  let ppd = '';
+  let ntah = 0;
   const schools = [...new Set(dataPerlis.map((item) => item.NAMASEKOLAH))];
   for (s in schools) {
     const school = schools[s];
@@ -107,19 +111,27 @@ exports.getAllData = (req, res) => {
         );
         const schoolClass = {
           namaKelas: classes[c],
-          jumlahPelajar: classData.length,
+          pelajar: [],
         };
         for (d in classData) {
           const student = classData[d];
-          schoolClass['pelajar' + d] = {
-            nama: student.NAMA,
-            umur: student.UMUR,
-            jantina: student.KODJANTINA,
-            noKp: student.NOKP,
-            tarikhLahir: student.TKHLAHIR,
-            kaum: student.KAUM,
-          };
+          if (ntah === 0) {
+            daerah = student.DAERAH;
+            ppd = student.PPD;
+            ntah++;
+          }
+          schoolClass.pelajar.push({
+            NAMA: student.NAMA,
+            KODJANTINA: student.KODJANTINA,
+            UMUR: student.UMUR,
+            NOKP: student.NOKP,
+            TKHLAHIR: student.TKHLAHIR,
+            KAUM: student.KAUM,
+          });
         }
+        schoolClass.pelajar.sort((a, b) => {
+          return a.NAMA > b.NAMA ? 1 : -1;
+        });
         schoolClasses.push(schoolClass);
       }
       const schoolYear = {
@@ -135,6 +147,13 @@ exports.getAllData = (req, res) => {
     };
     data.push(schoolObject);
   }
+  data = [
+    {
+      DAERAH: daerah,
+      PPD: ppd,
+    },
+    ...data,
+  ];
   res.status(200).json(data);
 };
 

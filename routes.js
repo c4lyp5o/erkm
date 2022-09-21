@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { data } = require('./ERKM-dummy');
+const { data } = require('./db/ERKM-dummy.js');
 const { Router } = require('express');
 const controller = require('./controllers/index');
 const router = Router();
