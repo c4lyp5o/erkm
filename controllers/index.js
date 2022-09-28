@@ -2,8 +2,13 @@ const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
+const mdtb = require('../db/mdtb.json');
 
 exports.gigaChad = gigaChad;
+
+exports.getAllMdtbMembers = (req, res) => {
+  res.status(200).json({ data: mdtb });
+};
 
 function getStudentsInSchool(schoolName) {
   const students = _.reduce(
@@ -132,6 +137,75 @@ exports.getAllData = (req, res) => {
         schoolClass.pelajar.sort((a, b) => {
           return a.NAMA > b.NAMA ? 1 : -1;
         });
+        schoolClasses.push(schoolClass);
+      }
+      const schoolYear = {
+        tahun: year,
+        kelas: schoolClasses,
+      };
+      schoolYears.push(schoolYear);
+    }
+    const schoolObject = {
+      namaSekolah: school,
+      kodSekolah: schoolData[0].KODSEKOLAH,
+      semuaTahun: schoolYears,
+    };
+    data.push(schoolObject);
+  }
+  data = [
+    {
+      DAERAH: daerah,
+      PPD: ppd,
+      SEKOLAH: [...data],
+    },
+  ];
+  res.status(200).json(data);
+};
+
+exports.getAllYears = (req, res) => {
+  let data = [];
+  let daerah = '';
+  let ppd = '';
+  let ntah = 0;
+  const schools = [...new Set(dataPerlis.map((item) => item.NAMASEKOLAH))];
+  for (s in schools) {
+    const school = schools[s];
+    const schoolData = dataPerlis.filter((item) => item.NAMASEKOLAH === school);
+    const years = [...new Set(schoolData.map((item) => item.THNTING))];
+    const schoolYears = [];
+    for (y in years) {
+      const year = years[y];
+      const yearData = schoolData.filter((item) => item.THNTING === year);
+      const classes = [...new Set(yearData.map((item) => item.NAMAKELAS))];
+      const schoolClasses = [];
+      for (c in classes) {
+        const classData = yearData.filter(
+          (item) => item.NAMAKELAS === classes[c]
+        );
+        daerah = classData[0].DAERAH;
+        ppd = classData[0].PPD;
+        const schoolClass = {
+          namaKelas: classes[c],
+        };
+        // for (d in classData) {
+        //   const student = classData[d];
+        //   if (ntah === 0) {
+        //     daerah = student.DAERAH;
+        //     ppd = student.PPD;
+        //     ntah++;
+        //   }
+        //   schoolClass.pelajar.push({
+        //     NAMA: student.NAMA,
+        //     KODJANTINA: student.KODJANTINA,
+        //     UMUR: student.UMUR,
+        //     NOKP: student.NOKP,
+        //     TKHLAHIR: student.TKHLAHIR,
+        //     KAUM: student.KAUM,
+        //   });
+        // }
+        // schoolClass.pelajar.sort((a, b) => {
+        //   return a.NAMA > b.NAMA ? 1 : -1;
+        // });
         schoolClasses.push(schoolClass);
       }
       const schoolYear = {

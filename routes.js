@@ -10,7 +10,7 @@ router.get('/', controller.gigaChad);
 router.get('/raw', controller.databaru);
 
 // sorted data
-router.get('/alldatasorted', controller.getAllData);
+router.get('/alldatasorted', controller.getAllYears);
 
 // specific data
 router.get('/listsekolah', controller.getAllSchoolNames);
@@ -20,6 +20,9 @@ router.get(
   '/data/:kodSekolah/:tahun/:kelas',
   controller.sortByKodSekolahAndTahunAndKelas
 );
+
+// mdtb data
+router.get('/mdtb', controller.getAllMdtbMembers);
 
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
