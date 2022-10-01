@@ -3,8 +3,13 @@ const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
 const mdtb = require('../db/mdtb.json');
+const fasiliti = require('../db/fasiliti.json');
 
 exports.gigaChad = gigaChad;
+
+exports.getAllFasiliti = (req, res) => {
+  res.status(200).json({ data: fasiliti });
+};
 
 exports.getAllMdtbMembers = (req, res) => {
   res.status(200).json({ data: mdtb });
@@ -48,6 +53,25 @@ exports.databaru = (req, res) => {
   res.status(200).json({ dataPerlis });
 };
 
+exports.getAllPraSchoolNames = (req, res) => {
+  // init keys
+  const key1 = 'namasekolah';
+  const key2 = 'kodsekolah';
+  // 1st pass
+  const sekolahdata = [
+    ...new Map(
+      dataPraPerlis.map((item) => [
+        item[key1],
+        {
+          namaSekolah: item[key1],
+          kodSekolah: item[key2],
+        },
+      ])
+    ).values(),
+  ];
+  res.status(200).json({ data: sekolahdata });
+};
+
 exports.getAllSchoolNames = (req, res) => {
   // init array
   let data = [];
@@ -89,6 +113,70 @@ exports.getAllSchoolNames = (req, res) => {
       jumlahSekolahMenengah: sekolahMenengah.length,
       jumlahPelajarSekolahMenengah: jumlahPelajarSekolahMenengah,
       sekolahMenengah: sekolahMenengah,
+    },
+  ];
+  res.status(200).json(data);
+};
+
+exports.getAllPraData = (req, res) => {
+  let data = [];
+  let ppd = '';
+  let ntah = 0;
+  const schools = [...new Set(dataPraPerlis.map((item) => item.namasekolah))];
+  for (s in schools) {
+    const school = schools[s];
+    const schoolData = dataPraPerlis.filter(
+      (item) => item.namasekolah === school
+    );
+    const sekolahSemua = [
+      ...new Set(schoolData.map((item) => item.namasekolah)),
+    ];
+    const schoolClasses = [];
+    for (s in sekolahSemua) {
+      const sekolah = sekolahSemua[s];
+      const praData = schoolData.filter((item) => item.namasekolah === sekolah);
+      const classes = [...new Set(praData.map((item) => item.nama_kelas))];
+      for (c in classes) {
+        const classData = praData.filter(
+          (item) => item.nama_kelas === classes[c]
+        );
+        const schoolClass = {
+          namaKelas: classes[c],
+          pelajar: [],
+        };
+        for (d in classData) {
+          const student = classData[d];
+          if (ntah === 0) {
+            ppd = student.ppd;
+            ntah++;
+          }
+          schoolClass.pelajar.push({
+            NAMA: student.nama,
+            KODJANTINA: student.jantina,
+            UMUR: student.umur,
+            NOKP: student.nomykid,
+            TKHLAHIR: student.tarikhlahir,
+            KAUM: student.kaum,
+          });
+        }
+        schoolClass.pelajar.sort((a, b) => {
+          return a.nama > b.nama ? 1 : -1;
+        });
+        schoolClasses.push(schoolClass);
+      }
+    }
+    const schoolObject = {
+      namaSekolah: school,
+      kodSekolah: schoolData[0].kodsekolah,
+      kelas: schoolClasses,
+    };
+    data.push(schoolObject);
+  }
+  data = [
+    {
+      DAERAH: 'Perlis',
+      PPD: ppd,
+      SEKOLAH: [...data],
     },
   ];
   res.status(200).json(data);

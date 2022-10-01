@@ -10,7 +10,10 @@ router.get('/', controller.gigaChad);
 router.get('/raw', controller.databaru);
 
 // sorted data
-router.get('/alldatasorted', controller.getAllYears);
+router.get('/alldatasorted', controller.getAllData);
+
+// sorted pra data
+router.get('/allpradatasorted', controller.getAllPraData);
 
 // specific data
 router.get('/listsekolah', controller.getAllSchoolNames);
