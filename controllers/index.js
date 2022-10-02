@@ -12,7 +12,7 @@ exports.getAllFasiliti = (req, res) => {
 };
 
 exports.getAllMdtbMembers = (req, res) => {
-  res.status(200).json({ data: mdtb });
+  res.status(200).json(mdtb);
 };
 
 function getStudentsInSchool(schoolName) {

@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
 
-const port = process.env.PORT || 6001;
+const port = process.env.PORT || 6002;
 const server = express();
 
 server.use(cors());

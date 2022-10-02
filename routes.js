@@ -27,6 +27,9 @@ router.get(
 // mdtb data
 router.get('/mdtb', controller.getAllMdtbMembers);
 
+// fasiliti data
+router.get('/fasiliti', controller.getAllFasiliti);
+
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
   res.send(sekolahrendah);
