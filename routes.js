@@ -24,6 +24,9 @@ router.get(
   controller.sortByKodSekolahAndTahunAndKelas
 );
 
+// pegawai data
+router.get('/pegawai', controller.getAllPegawai);
+
 // mdtb data
 router.get('/mdtb', controller.getAllMdtbMembers);
 

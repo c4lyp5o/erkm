@@ -2,6 +2,7 @@ const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
+const pegawai = require('../db/pegawai.json');
 const mdtb = require('../db/mdtb.json');
 const fasiliti = require('../db/fasiliti.json');
 
@@ -9,6 +10,10 @@ exports.gigaChad = gigaChad;
 
 exports.getAllFasiliti = (req, res) => {
   res.status(200).json({ data: fasiliti });
+};
+
+exports.getAllPegawai = (req, res) => {
+  res.status(200).json(pegawai);
 };
 
 exports.getAllMdtbMembers = (req, res) => {
