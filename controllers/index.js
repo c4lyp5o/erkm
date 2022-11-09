@@ -9,7 +9,20 @@ const fasiliti = require('../db/fasiliti.json');
 exports.gigaChad = gigaChad;
 
 exports.getAllFasiliti = (req, res) => {
-  res.status(200).json({ data: fasiliti });
+  const { negeri, daerah, kodFasiliti } = req.query;
+  let query = {};
+  let data = [];
+  if (negeri) {
+    query = { ...query, negeri };
+  }
+  if (daerah) {
+    query = { ...query, daerah };
+  }
+  if (kodFasiliti) {
+    query = { ...query, kodFasiliti };
+  }
+  data = _.filter(fasiliti, query);
+  res.status(200).json({ data });
 };
 
 exports.getAllPegawai = (req, res) => {
