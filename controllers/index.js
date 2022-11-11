@@ -5,6 +5,7 @@ const dataPraPerlis = require('../db/prasekolah.json');
 const pegawai = require('../db/pegawai.json');
 const mdtb = require('../db/mdtb.json');
 const fasiliti = require('../db/fasiliti.json');
+const mysjid = require('../db/mysjid.json');
 
 exports.gigaChad = gigaChad;
 
@@ -439,4 +440,17 @@ exports.showKelasByTahun = (req, res) => {
     });
   });
   res.status(200).json({ pelajarByKelas });
+};
+
+exports.checkTheirID = (req, res) => {
+  const { pid } = req.query;
+  console.log(pid);
+  const verified = _.filter(mysjid, (o) => {
+    return o.pid === pid;
+  });
+  if (verified.length > 0) {
+    res.status(200).json({ verified: true, info: verified[0] });
+  } else {
+    res.status(200).json({ verified: false });
+  }
 };

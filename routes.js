@@ -33,6 +33,9 @@ router.get('/mdtb', controller.getAllMdtbMembers);
 // fasiliti data
 router.get('/fasiliti', controller.getAllFasiliti);
 
+// mysjid
+router.get('/mysjid', controller.checkTheirID);
+
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
   res.send(sekolahrendah);
