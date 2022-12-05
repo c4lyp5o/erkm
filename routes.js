@@ -28,7 +28,7 @@ router.get(
 router.get('/pegawai', controller.getAllPegawai);
 
 // mdtb data
-router.get('/mdtb', controller.getAllMdtbMembers);
+router.get('/mdtb', controller.queryMdtb);
 
 // fasiliti data
 router.get('/fasiliti', controller.getAllFasiliti);

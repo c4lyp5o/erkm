@@ -3,7 +3,7 @@ const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
 const pegawai = require('../db/pegawai.json');
-const mdtb = require('../db/mdtb.json');
+const mdtb = require('../db/jp.json');
 const fasiliti = require('../db/fasiliti.json');
 const mysjid = require('../db/mysjid.json');
 
@@ -32,6 +32,17 @@ exports.getAllPegawai = (req, res) => {
 
 exports.getAllMdtbMembers = (req, res) => {
   res.status(200).json(mdtb);
+};
+
+exports.queryMdtb = (req, res) => {
+  const { nama } = req.query;
+  let data = [];
+  if (nama) {
+    data = _.filter(mdtb, (j) =>
+      j.nama.toLowerCase().includes(nama.toLowerCase())
+    );
+  }
+  res.status(200).json({ data });
 };
 
 function getStudentsInSchool(schoolName) {
