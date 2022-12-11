@@ -25,7 +25,7 @@ router.get(
 );
 
 // pegawai data
-router.get('/pegawai', controller.getAllPegawai);
+router.get('/pegawai', controller.queryPegawai);
 
 // mdtb data
 router.get('/mdtb', controller.queryMdtb);

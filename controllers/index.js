@@ -2,8 +2,8 @@ const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
-const pegawai = require('../db/pegawai.json');
-const mdtb = require('../db/jp.json');
+const pegawai = require('../db/pp.json');
+const juruterapi = require('../db/jp.json');
 const fasiliti = require('../db/fasiliti.json');
 const mysjid = require('../db/mysjid.json');
 
@@ -30,15 +30,26 @@ exports.getAllPegawai = (req, res) => {
   res.status(200).json(pegawai);
 };
 
+exports.queryPegawai = (req, res) => {
+  const { nama } = req.query;
+  let data = [];
+  if (nama) {
+    data = _.filter(pegawai, (j) =>
+      j.nama.toLowerCase().includes(nama.toLowerCase())
+    );
+  }
+  res.status(200).json({ data });
+};
+
 exports.getAllMdtbMembers = (req, res) => {
-  res.status(200).json(mdtb);
+  res.status(200).json(juruterapi);
 };
 
 exports.queryMdtb = (req, res) => {
   const { nama } = req.query;
   let data = [];
   if (nama) {
-    data = _.filter(mdtb, (j) =>
+    data = _.filter(juruterapi, (j) =>
       j.nama.toLowerCase().includes(nama.toLowerCase())
     );
   }
