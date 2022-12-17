@@ -1,6 +1,15 @@
 # pull the Node.js Docker image
 FROM node:alpine
 
+# update the package index
+RUN apk update
+
+# add busybox initscripts to the PATH
+RUN apk add --no-cache tzdata
+
+# set timezone data
+ENV TZ=Asia/Kuala_Lumpur
+
 # create the directory inside the container
 WORKDIR /usr/src/app
 

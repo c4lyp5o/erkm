@@ -1,7 +1,8 @@
 require('dotenv').config();
-const { data } = require('./db/ERKM-dummy.js');
 const { Router } = require('express');
 const controller = require('./controllers/index');
+const giretcache = require('./controllers/giretcache');
+const authentication = require('./middleware/auth');
 const router = Router();
 
 router.get('/', controller.gigaChad);
@@ -35,6 +36,12 @@ router.get('/fasiliti', controller.getAllFasiliti);
 
 // mysjid
 router.get('/mysjid', controller.checkTheirID);
+
+// get cache
+router.get('/cache', authentication.auth, giretcache.getCache);
+
+// save to cache
+router.post('/cache', authentication.auth, giretcache.saveToCache);
 
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
