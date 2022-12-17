@@ -1,4 +1,4 @@
 node_modules
 db/
 .env
-logs/*
+logs/everything.log
