@@ -7,6 +7,8 @@ const StatsSchema = new mongoose.Schema(
     cacheRetrieved: { type: Number, default: 0 },
     cachedUpdated: { type: Number, default: 0 },
     noOfConnections: { type: Number, default: 0 },
+    noOfBadConnections: { type: Number, default: 0 },
+    badIps: { type: Array, default: [] },
   },
   { timestamps: true }
 );

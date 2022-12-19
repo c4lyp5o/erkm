@@ -92,7 +92,7 @@ const getCache = async (req, res) => {
       return res.status(200).json(mongoCache);
     }
     if (!mongoCache) {
-      logger.info('Cache not found in redis and mongo');
+      logger.info('Cache not found in mongo');
       res.status(404).json({ message: 'Cache not found' });
     }
   }
