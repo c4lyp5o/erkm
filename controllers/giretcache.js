@@ -80,7 +80,7 @@ const getInitialData = async (req, res) => {
     name: 'current',
   });
   if (data.length > 0) {
-    res.status(200).json(data);
+    res.status(200).json({ data: data[0].data[0] });
   } else {
     res.status(404).json({ message: 'Data not found' });
   }
@@ -113,7 +113,6 @@ const getCache = async (req, res) => {
 
 const saveInitialData = async (req, res) => {
   console.log('triggered save');
-  const data = { ...req.body };
   console.log(data);
   const initial = await Initial.create({
     name: 'current',
