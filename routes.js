@@ -38,10 +38,13 @@ router.get('/fasiliti', controller.getAllFasiliti);
 router.get('/mysjid', controller.checkTheirID);
 
 // get cache
-router.get('/cache', authentication.auth, giretcache.getCache);
+router.get('/cache', giretcache.getCache);
 
 // save to cache
-router.post('/cache', authentication.auth, giretcache.saveToCache);
+router.post('/cache', giretcache.saveToCache);
+
+router.get('/cache/initial', giretcache.getInitialData);
+router.post('/cache/initial', giretcache.saveInitialData);
 
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;

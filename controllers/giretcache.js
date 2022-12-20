@@ -1,5 +1,6 @@
 const Cache = require('../models/cache');
 const Stats = require('../models/stats');
+const Initial = require('../models/initial');
 const logger = require('../logs/logger');
 const redis = require('redis');
 
@@ -73,6 +74,18 @@ const updateCacheUpdatedStats = async () => {
   logger.info('cache updated');
 };
 
+const getInitialData = async (req, res) => {
+  console.log('triggered get');
+  const data = await Initial.find({
+    name: 'current',
+  });
+  if (data.length > 0) {
+    res.status(200).json(data);
+  } else {
+    res.status(404).json({ message: 'Data not found' });
+  }
+};
+
 const getCache = async (req, res) => {
   const { pid } = req.query;
   logger.info(`Cache requested for ${pid}`);
@@ -98,7 +111,19 @@ const getCache = async (req, res) => {
   }
 };
 
+const saveInitialData = async (req, res) => {
+  console.log('triggered save');
+  const data = { ...req.body };
+  console.log(data);
+  const initial = await Initial.create({
+    name: 'current',
+    data: data,
+  });
+  res.status(200).json(initial);
+};
+
 const saveToCache = async (req, res) => {
+  console.log('triggered');
   let data;
   data = { ...req.body };
   logger.info(`Trying to save cache for ${data.ic}`);
@@ -126,6 +151,8 @@ const saveToCache = async (req, res) => {
 };
 
 module.exports = {
+  getInitialData,
   getCache,
+  saveInitialData,
   saveToCache,
 };
