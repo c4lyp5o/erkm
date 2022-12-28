@@ -2,9 +2,10 @@ const _ = require('lodash');
 const { gigaChad } = require('../gigachad');
 const dataPerlis = require('../db/erkm.json');
 const dataPraPerlis = require('../db/prasekolah.json');
-const pegawai = require('../db/pp.json');
+// const pegawai = require('../db/pp.json');
 const juruterapi = require('../db/jp.json');
 const fasiliti = require('../db/fasiliti.json');
+const kkiakd = require('../db/kkiakd.json');
 const mysjid = require('../db/mysjid.json');
 
 exports.gigaChad = gigaChad;
@@ -54,6 +55,20 @@ exports.queryMdtb = (req, res) => {
     );
   }
   res.status(200).json({ data });
+};
+
+exports.getKkiakd = (req, res) => {
+  console.log(req.query);
+  const { negeri, daerah } = req.query;
+  let query = {};
+  let data = [];
+  if (negeri && daerah) {
+    query = { ...query, negeri, daerah };
+    data = _.filter(kkiakd, query);
+    res.status(200).json(data);
+  } else {
+    res.status(400).json({ message: 'negeri and daerah are required' });
+  }
 };
 
 function getStudentsInSchool(schoolName) {

@@ -46,6 +46,8 @@ router.post('/cache', giretcache.saveToCache);
 router.get('/cache/initial', giretcache.getInitialData);
 router.post('/cache/initial', giretcache.saveInitialData);
 
+router.get('/getkkiakd', controller.getKkiakd);
+
 router.get('/sr', (req, res) => {
   const sekolahrendah = data.sekolahRendah;
   res.send(sekolahrendah);
