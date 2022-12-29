@@ -58,12 +58,11 @@ exports.queryMdtb = (req, res) => {
 };
 
 exports.getKkiakd = (req, res) => {
-  console.log(req.query);
-  const { negeri, daerah } = req.query;
+  const { negeri } = req.query;
   let query = {};
   let data = [];
-  if (negeri && daerah) {
-    query = { ...query, negeri, daerah };
+  if (negeri) {
+    query = { ...query, negeri };
     data = _.filter(kkiakd, query);
     res.status(200).json(data);
   } else {
